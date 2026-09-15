@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+:root {
+  /* 'Playlist Script' is a licensed font — it is used when installed locally,
+     otherwise we gracefully fall back to the closest free brush scripts. */
+  --font-title: "Playlist Script", "Yellowtail", "Pacifico", "Caveat Brush", cursive;
+  --font-sub: "Amatic SC", "Caveat", cursive;
+  --font-body: "Patrick Hand", "Caveat", "Segoe Print", cursive;
+  --font-equation: "Kalam", "Patrick Hand", cursive;
+  --font-note: "Caveat", "Patrick Hand", cursive;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --noatic-lavender: #b9a3e3;
+  --noatic-purple: #8a6fd1;
+  --noatic-ink: #2f2a3a;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ *
+ * Hand-drawn text decorations (used inside contentEditable)
+ * ------------------------------------------------------------------ */
+
+.nt-wavy {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, #b9a3e3);
+  text-decoration-thickness: 1.6px;
+  text-underline-offset: 7px;
+}
+
+.nt-marker {
+  --mk: #e0d3fb;
+  background-image: linear-gradient(
+    103deg,
+    transparent 0.4%,
+    var(--mk) 2.2%,
+    var(--mk) 96.5%,
+    transparent 99.3%
+  );
+  background-size: 100% 84%;
+  background-position: 0 66%;
+  background-repeat: no-repeat;
+  border-radius: 0.32em 0.7em 0.36em 0.55em;
+  padding: 0.02em 0.26em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.nt-circle {
+  box-shadow: inset 0 0 0 1.6px color-mix(in srgb, currentColor 40%, #b9a3e3);
+  border-radius: 46% 54% 50% 50% / 58% 44% 56% 42%;
+  padding: 0.05em 0.4em;
+}
+
+/* ------------------------------------------------------------------ *
+ * Paper text blocks
+ * ------------------------------------------------------------------ */
+
+.nt-text p {
+  margin: 0;
+  min-height: 1em;
+}
+
+.nt-text ul,
+.nt-text ol {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.nt-text b,
+.nt-text strong {
+  font-weight: 700;
+}
+
+.nt-text:focus {
+  outline: none;
+}
+
+.nt-text[data-empty="true"]:not(:focus)::before {
+  content: attr(data-placeholder);
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+/* selection + handles */
+.nt-selected {
+  outline: 1.5px dashed rgba(138, 111, 209, 0.9);
+  outline-offset: 3px;
+}
+
+.nt-handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  background: #fff;
+  border: 1.5px solid var(--noatic-purple);
+  box-shadow: 0 1px 3px rgba(60, 40, 100, 0.25);
+}
+
+/* ------------------------------------------------------------------ *
+ * Desk chrome
+ * ------------------------------------------------------------------ */
+
+.nt-desk-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: radial-gradient(
+      circle at 20% 15%,
+      rgba(255, 255, 255, 0.55),
+      transparent 55%
+    ),
+    radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.12), transparent 60%);
+}
+
+.nt-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.nt-scroll::-webkit-scrollbar-thumb {
+  background: rgba(120, 100, 160, 0.35);
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.nt-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nt-shadow-paper {
+  box-shadow:
+    0 1px 2px rgba(60, 45, 90, 0.12),
+    0 18px 48px -12px rgba(60, 45, 90, 0.35);
+}
+
+input[type="range"] {
+  accent-color: var(--noatic-purple);
+}
+
+input[type="color"] {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+@media print {
+  .nt-no-print {
+    display: none !important;
+  }
+}
